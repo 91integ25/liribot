@@ -44,26 +44,15 @@ client.get('statuses/user_timeline',params, function(error,tweets,response){
 }
 // fucntion to search for spotify song
 function spotifyIt(search){
-	// assign url variable to distinguish between undefined and a regular search
-	var url = "https://api.spotify.com/v1/search?q=" + toSearch +"&type=track&limit=1"
 	if(toSearch === undefined){
-		 url = "https://api.spotify.com/v1/search?q=the sign&type=track&limit=4" ;
+		toSearch = "The sign - ace of base" ;
 	}
+	var url = "https://api.spotify.com/v1/search?q=" + toSearch +"&type=track&limit=1"
 rp(url)
 .then(function(body){
 // parsing the json 
 	var parsedBody = JSON.parse(body);
-	if(toSearch === undefined){
-		var ace = parsedBody.tracks.items[2];
 
-		console.log("Artist name: " + ace.artists[0].name);
-		console.log("Song name: " +  ace.name);
-	    console.log("Preview url: " + ace.preview_url);
-	    console.log("album name: " + ace.album.name);
-	    // returning so that the rest of code does not run if ace of base 
-	    
-	}
-	else{
 	parsedBody.tracks.items.map(function(e){
 
 		console.log("Artist name: " + e.artists[0].name);
@@ -71,7 +60,7 @@ rp(url)
 		console.log("Preview url: " + e.preview_url);
 		console.log("album name: " + e.album.name);
 	});
-}
+
 })
 .catch(function(error){
 	console.log(error);
