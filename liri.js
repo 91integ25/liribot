@@ -1,4 +1,5 @@
 var keys = require('./keys');
+// ran out of time to incorporate inquirer maybe later
 // var inquirer = require('inquirer');
 var command = process.argv[2];
 var toSearch = process.argv[3];
@@ -13,6 +14,7 @@ var client = new Twitter({
 	access_token_secret: keys.access_secret
 });
 
+// switch to control all function calls
 switch(command){
 	case "spotify-this-song":
 	spotifyIt();
@@ -59,15 +61,17 @@ rp(url)
 	    console.log("Preview url: " + ace.preview_url);
 	    console.log("album name: " + ace.album.name);
 	    // returning so that the rest of code does not run if ace of base 
-	    return;
+	    
 	}
+	else{
 	parsedBody.tracks.items.map(function(e){
-		 
+
 		console.log("Artist name: " + e.artists[0].name);
 		console.log("Song name: " + e.name);
 		console.log("Preview url: " + e.preview_url);
 		console.log("album name: " + e.album.name);
 	});
+}
 })
 .catch(function(error){
 	console.log(error);
@@ -83,7 +87,7 @@ function movie(){
 rp("http://www.omdbapi.com/?t="+ toSearch + "&y=&plot=short&r=json")
 .then(function(body){
 	// parsing the json 
-	var parsedJson =JSON.parse(body);
+	var parsedJson = JSON.parse(body);
 
 console.log("Title of movie: " + parsedJson.Title);
 console.log("Year: " + parsedJson.Year);
