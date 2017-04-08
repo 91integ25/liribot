@@ -41,7 +41,7 @@ client.get('statuses/user_timeline',params, function(error,tweets,response){
 });
 }
 // fucntion to search for spotify song
-function spotifyIt(data){
+function spotifyIt(search){
 	// assign url variable to distinguish between undefined and a regular search
 	var url = "https://api.spotify.com/v1/search?q=" + toSearch +"&type=track&limit=1"
 	if(toSearch === undefined){
