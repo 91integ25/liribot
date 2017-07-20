@@ -29,6 +29,7 @@ switch(command){
 	doThis();
 	break;
 }
+
 // function to get my tweets
 function getTweets(){
 var params = {
@@ -42,9 +43,9 @@ client.get('statuses/user_timeline',params, function(error,tweets,response){
 	}
 });
 }
-// fucntion to search for spotify song
+// function to search for spotify song
 function spotifyIt(search){
-	if(toSearch === undefined){
+	if(!toSearch){
 		toSearch = "The sign - ace of base" ;
 	}
 	var url = "https://api.spotify.com/v1/search?q=" + toSearch +"&type=track&limit=1"
@@ -66,10 +67,11 @@ rp(url)
 	console.log(error);
 });
 }
+
 // function for movie search 
 function movie(){
 	// checks if process.argv is defined
-	if(toSearch === undefined){
+	if(!toSearch){
 		toSearch = "Mr.nobody";
 	}
 	// calling omdb api for data
